@@ -1,0 +1,149 @@
+
+ <!-- <!DOCTYPE html> -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Resume</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="heading">
+      <strong>Editable Resume created by Hamna</strong>
+    </div>
+    <div class="mainn">
+      <form id="resumeForm">
+        <div class="personal"><strong>Personal Info</strong></div>
+
+        <label class="inputname" id="upload" for="picture"
+          ><strong>Upload Picture:</strong></label
+        >
+        <input
+          class="forpic"
+          type="file"
+          id="picture"
+          name="picture"
+          accept="image/*"
+          required
+        /><br /><br />
+
+        <label class="inputname" for="name"><strong>Name:</strong></label>
+        <input type="text" id="name" name="name" required /><br /><br />
+
+        <label class="inputname" for="phone"
+          ><strong>Phone Number:</strong></label
+        >
+        <input type="tel" id="phone" name="phone" required /><br /><br />
+
+        <label class="inputname" for="email"><strong>Email:</strong></label>
+        <input type="email" id="email" name="email" required /><br /><br />
+
+        <label class="inputname" for="address"><strong>Address:</strong></label>
+        <textarea id="address" name="address" required></textarea><br /><br />
+
+        <div class="personal"><strong>Skills</strong></div>
+        <input type="text" id="skills" name="skills" required /><br />
+        <div id="additionalSkills"></div>
+        <br />
+
+        <div class="personal"><strong>Education</strong></div>
+        <textarea id="education" name="education" required></textarea><br />
+        <div id="additionalEducation"></div>
+        <br />
+
+        <div class="personal"><strong>Experience</strong></div>
+        <textarea id="experience" name="experience" required></textarea><br />
+        <div id="additionalExperience"></div>
+        <br />
+      </form>
+
+      <button id="generateBtn" class="inputname" type="button">
+        Generate Resume
+      </button>
+      <button id="downloadBtn" class="inputname" type="button">
+        Download as PDF
+      </button>
+      <button id="shareBtn" class="inputname" type="button">
+        Share Resume
+      </button>
+    </div>
+
+    <!-- <h1>
+      After Generating the Resume, if you want to add more skills, education, or experience, click the button, then go to the respective section and add additional info.
+    </h1> -->
+
+    <div id="generatedResume" class="resume-slide-left"></div>
+
+    <!-- Include html2pdf.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+      // Generate Resume with Slide-In Effect
+      document
+        .getElementById("generateBtn")
+        .addEventListener("click", function () {
+          const picture = document.getElementById("picture").files[0];
+          const name = document.getElementById("name").value;
+          const phone = document.getElementById("phone").value;
+          const email = document.getElementById("email").value;
+          const address = document.getElementById("address").value;
+          const skills = document.getElementById("skills").value;
+          const education = document.getElementById("education").value;
+          const experience = document.getElementById("experience").value;
+
+          let pictureURL = "";
+          if (picture) {
+            pictureURL = URL.createObjectURL(picture);
+          }
+
+          const generatedResume = `
+          <div>
+            <h2>${name}</h2>
+            <img src="${pictureURL}" alt="Profile Picture" width="100" height="100"><br>
+            <strong>Phone:</strong> ${phone}<br>
+            <strong>Email:</strong> ${email}<br>
+            <strong>Address:</strong> ${address}<br><br>
+            <strong>Skills:</strong> <div id="skillsList">${skills}</div><br>
+            <strong>Education:</strong> <div id="educationList">${education}</div><br>
+            <strong>Experience:</strong> <div id="experienceList">${experience}</div><br>
+          </div>
+        `;
+
+          const resumeContainer = document.getElementById("generatedResume");
+          resumeContainer.innerHTML = generatedResume;
+          resumeContainer.classList.add("slide-from-left");
+        });
+
+      // PDF Download Functionality
+      document
+        .getElementById("downloadBtn")
+        .addEventListener("click", function () {
+          const resumeContent = document.getElementById("generatedResume");
+          html2pdf()
+            .from(resumeContent)
+            .set({
+              margin: 1,
+              filename: "resume.pdf",
+              html2canvas: { scale: 2 },
+              jsPDF: { orientation: "portrait" },
+            })
+            .save();
+        });
+
+      // Share Functionality
+      document
+        .getElementById("shareBtn")
+        .addEventListener("click", function () {
+          const name = document.getElementById("name").value;
+          const emailBody = `Hi,\n\nCheck out my resume created with Dynamic Resume by Mohsin!`;
+
+          // Email share link (opens default email client)
+          const mailtoLink = `mailto:?subject=Resume%20by%20${name}&body=${encodeURIComponent(
+            emailBody
+          )}`;
+
+          // Open email client
+          window.open(mailtoLink, "_blank");
+        });
+    </script>
+  </body>
+</html>

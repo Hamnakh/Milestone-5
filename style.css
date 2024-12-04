@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #000000;
+    background-image: url(./image/FFFF.gif),
+      linear-gradient(to bottom right, #ffffff, #69124f);
+    background-blend-mode: screen;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: slideInFromLeft 0.5s ease-out;
+  }
+  
+  .heading {
+    color: #0f0f0f;
+    font-size: xx-large;
+    text-align: center;
+    margin: 30px 0;
+    animation: slideInFromLeft 0.7s ease-out forwards;
+  }
+  
+  .mainn {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 7px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0px 4px 12px rgba(255, 0, 128, 0.4);
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .mainn:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    transform: scale(1.02);
+  }
+  
+  .personal {
+    color: #f798d2;
+    background-color: rgba(34, 5, 22, 0.7);
+    text-align: center;
+    padding: 12px;
+    font-size: x-large;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .personal:hover {
+    background-color: rgba(73, 10, 45, 0.85);
+  }
+  
+  input[type="file"] {
+    font-size: 16px;
+    padding: 10px;
+    width: 200px;
+    background-color: rgba(75, 18, 56, 0.1);
+    border-radius: 30px;
+    border: 2px solid #975378;
+    margin-top: 20px;
+    transition: background-color 0.3s, border 0.3s;
+  }
+  
+  input[type="file"]:hover {
+    background-color: rgba(68, 11, 35, 0.2);
+    border: 2px solid #4d1c42;
+  }
+  
+  button {
+    cursor: pointer;
+    font-size: large;
+    color: #ffffff;
+    background-color: #501439;
+    border: 2px solid #3a242f;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #f090cb;
+    transform: translateY(-2px);
+  }
+  
+  input[type="submit"] {
+    border-radius: 30px;
+    background-color: #bd59a4;
+    color: white;
+    font-size: x-large;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #380729;
+  }
+  
+  #resume-contect {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #ff00aa;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid #fab3ea;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  
+  #resume-contect:hover {
+    border-color: #ec68c0;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+  
+  h2,
+  p {
+    margin: 10px 0;
+    color: #531b45;
+  }
+  
+  h1 {
+    color: #ffffff;
+    font-size: small;
+    text-align: center;
+  }
+  
+  img {
+    max-width: 150px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+  }
+  
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .slide-from-left {
+    animation: slideInFromLeft 0.5s ease-out forwards;
+  }
+  
+  .animated-slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slide-up 0.5s ease forwards;
+  }
+  
+  @keyframes slide-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      margin: 10px;
+    }
+    form,
+    #resume {
+      padding: 15px;
+    }
+    input,
+    textarea {
+      font-size: 14px;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+    p {
+      font-size: 1em;
+    }
+    img {
+      max-width: 100px;
+    }
+  }
+  
